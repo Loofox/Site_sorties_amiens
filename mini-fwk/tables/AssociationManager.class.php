@@ -55,10 +55,10 @@ class AssociationManager{
 			return $membre;
 		}
 
-
+*/
 
 		public static function chercherParLogin($login){
-			$sql="SELECT * from Membre WHERE login=?";
+			$sql="SELECT * from association WHERE login=?";
 			$res=DB::get_instance()->prepare($sql);
 			$res->execute(array($login));
 			//gérer les erreurs éventuelles
@@ -66,17 +66,22 @@ class AssociationManager{
 				return false;
 			}
 			$m= $res->fetch();			
-			$membre=new Membre();
-			$membre->id=$m[0];
-			$membre->login=$m[1];
-			$membre->nom= $m[2];
-			$membre->prenom=$m[3];
-			$membre->mail=$m[4];
-			$membre->pass=$m[5];											
-			return $membre;
+			$association=new Association();
+			$association->idAssociation=$m[0];
+			$association->nomAssociation=$m[1];
+			$association->description= $m[2];
+			$association->adresse1=$m[3];
+			$association->adresse2=$m[4];
+			$association->ville=$m[5];
+			$association->codePostal=$m[6];											
+			$association->adresseMail=$m[7];											
+			$association->siteWeb=$m[8];											
+			$association->lienLogo=$m[9];
+			$association->login=$m[10];
+			$association->password=$m[11];																																												
+			return $association;
 		}
 		
-*/	
 		//autres exemples de fonctions possibles
 		public static function liste(){
 			
