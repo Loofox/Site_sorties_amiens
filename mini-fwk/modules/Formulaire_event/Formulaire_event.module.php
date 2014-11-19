@@ -11,38 +11,36 @@ class Formulaire_event extends Module{
 		
 		//construction d'un formulaire manuellement
 		//chaque champ est ajouté par appel de fonction
-		$f=new Form("?module=Formulaire&action=valide","form1");
-			$f->add_text("nom", "nom", "Nom")->set_required();
-			$f->add_text("prenom", "prenom", "Prénom")->set_required();
-			$f->add_text("login","login","Login")->set_required();					
-			$f->add_password("pass1","pass1","Mot de passe")->set_required();		
-			$f->add_password("pass2","pass2","retapez...")->set_required();	
-			$f->add_text("mail","mail","M@il")->set_required();	
-			$f->add_text("tel_port", "tel_port", "Téléphone portable");
+		$f=new Form("?module=Formulaire_event&action=valide","form1");
+			$f->add_text("nom", "nom", "Nom de l'association")->set_required();
+			$f->add_textarea("desc", "desc", "Description")->set_required();
 			$f->add_text("adr", "adr", "Adresse 1")->set_required();
 			$f->add_text("adr2", "adr2", "Adresse 2");
 			$f->add_text("ville", "ville", "Ville")->set_required();
 			$f->add_text("codepostal", "codepostal", "Code Postal")->set_required();
-
+			$f->add_text("mail","mail","e-M@il")->set_required();	
+			$f->add_text("site", "site", "Site Web")->set_required();
+			$f->add_text("lienlogo", "lienlogo", "Lien du logo")->set_required();
+			$f->add_text("login","login","Login")->set_required();
+			$f->add_password("pass1","pass1","Mot de passe")->set_required();		
+			$f->add_password("pass2","pass2","retapez...")->set_required();
 
 		//règles de validation automatiques
 		$f->nom->set_validation("required");
-		$f->prenom->set_validation("required");
-		$f->login->set_validation("required");
-		$f->pass1->set_validation("required");
-		$f->pass2->set_validation("equals-field:pass1");
-		$f->mail->set_validation("required");
+		$f->desc->set_validation("required");
 		$f->adr->set_validation("required");
 		$f->ville->set_validation("required");
-		$f->codepostal->set_validation("required");		
+		$f->codepostal->set_validation("is_int");	
+		$f->mail->set_validation("mail");
+		$f->site->set_validation("required");
+		$f->lienlogo->set_validation("required");
+		$f->login->set_validation("required");
+		$f->pass1->set_validation("required");
+		$f->pass2->set_validation("equals-field:pass1");	
 	
 
 
 		$f->add_submit("Valider","bntval")->set_value('Valider');		
-
-		//exemple de pré-remplissage du formulaire avec des valeurs par défaut
-		$f->populate(array("login"=>"Exemple", "rad1"=>"two", "nom"=>"Nom de Famille"));
-
 
 		//passe le formulaire dans le template sous le nom "form"
 		$this->tpl->assign("form",$f);	
