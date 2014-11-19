@@ -14,40 +14,43 @@
 	<body>
 
 
-		<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-					<span class="sr-only">Toggle navigation</span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-				<a class="navbar-brand" href="?">MiniFWK</a>
-			</div>
-			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-				<ul class="nav navbar-nav">
-				{foreach $menus as $m=>$data}
-					{if !is_array($data)}
-						<li><a id='A_{$m}' href='{$data}'>{$m}</a></li>
-					{else}
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown">{$m} <b class="caret"></b></a>
-							<ul class="dropdown-menu">
-							{foreach $data as $sm=>$shref}	
-								<li>
-								<a href='{$shref}'>{$sm}</a>
-								</li>
-							{/foreach}			        
-							</ul>
-						</li>
-					{/if}
-				{/foreach}
-				</ul>		
-				<ul class="nav navbar-nav navbar-right">
-					<li><a href="Doc">Documentation</a></li>			
-				</ul>
-				{$Bloc_Login}			
-		</nav>
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">On va ou ce soir ?</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Sorties du jour</a></li>
+        <li><a href="#">Bars</a></li>
+        <li><a href="#">Cinémas</a></li>
+        <li><a href="#">Concerts</a></li>   
+      </ul>
+      
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+        	<form class="navbar-form navbar-left" role="search">
+       			<div class="form-group">
+          			<input type="text" class="form-control" placeholder="Search">
+        		</div>
+        		<button type="submit" class="btn btn-default">Rechercher</button>
+      		</form>
+        </li>
+        <li><a href="#">Inscription</a></li>
+        <li><a href="#">Connexion</a></li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
 
 
     <div class="container">
