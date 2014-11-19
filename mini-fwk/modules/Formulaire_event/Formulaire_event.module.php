@@ -1,61 +1,41 @@
 <?php
-class Formulaire extends Module{
+class Formulaire_event extends Module{
 
 	public function init(){}
 
 	public function action_index(){
 
-		$this->set_title("Utilisation de l'objet formulaire");		
+		$this->set_title("Formulaire d'inscription");		
 
 
 		
 		//construction d'un formulaire manuellement
 		//chaque champ est ajouté par appel de fonction
 		$f=new Form("?module=Formulaire&action=valide","form1");
-			$f->add_text("login","login","Login")->set_required();		
-			$f->add_text("texte","texte","Texte");		
-			$f->add_text("mail","mail","M@il");		
-			$f->add_password("pass1","pass1","Password");		
-			$f->add_password("pass2","pass2","retapez...");		
+			$f->add_text("nom", "nom", "Nom")->set_required();
+			$f->add_text("prenom", "prenom", "Prénom")->set_required();
+			$f->add_text("login","login","Login")->set_required();					
+			$f->add_password("pass1","pass1","Mot de passe")->set_required();		
+			$f->add_password("pass2","pass2","retapez...")->set_required();	
+			$f->add_text("mail","mail","M@il")->set_required();	
+			$f->add_text("tel_port", "tel_port", "Téléphone portable");
+			$f->add_text("adr", "adr", "Adresse 1")->set_required();
+			$f->add_text("adr2", "adr2", "Adresse 2");
+			$f->add_text("ville", "ville", "Ville")->set_required();
+			$f->add_text("codepostal", "codepostal", "Code Postal")->set_required();
 
-		//construction sous forme de tableau
-		//chaque champ est déclaré sous la forme d'un tableau de paramètres
-		$f->build_from_array(array(
-			array(
-					'type'=>'text',
-					'name'=>'champ1',
-					'id'=>'champ1',
-					'label'=>'Champ 1',
-					'required'=>true
-				),
-				
-			array(
-					'type'=>'password',
-					'name'=>'champ2',
-					'id'=>'champ2',
-					'label'=>'Champ 2',
-					'required'=>true		
-				),
-		
-			array(
-					'type'=>'select',
-					'name'=>'champ3',
-					'id'=>'champ3',
-					'label'=>'Champ 3',
-					'required'=>true,
-					'options'=>array('pommes','poires','bananes')
-				)
-		));
 
 		//règles de validation automatiques
-		$f->champ1->set_validation("date:d-m-Y");
-		//$f->champ3->set_validation("regex:/pommes/");  ne fonctionne pas car teste la valeur plutôt que le texte. A corriger
-		$f->champ3->set_validation("equals:0"); 
-		$f->radio->set_validation("equals:Un");		
-
+		$f->nom->set_validation("required");
+		$f->prenom->set_validation("required");
+		$f->login->set_validation("required");
 		$f->pass1->set_validation("required");
-		$f->pass2->set_validation("equals-field:pass1");		
-		$f->ztexte->set_validation("min-length:10");		
+		$f->pass2->set_validation("equals-field:pass1");
+		$f->mail->set_validation("required");
+		$f->adr->set_validation("required");
+		$f->ville->set_validation("required");
+		$f->codepostal->set_validation("required");		
+	
 
 
 		$f->add_submit("Valider","bntval")->set_value('Valider');		

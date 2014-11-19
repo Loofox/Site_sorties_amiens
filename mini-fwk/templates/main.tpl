@@ -45,7 +45,7 @@
         		<button type="submit" class="btn btn-default">Rechercher</button>
       		</form>
         </li>
-        <li><a href="#">Inscription</a></li>
+        <li><a href="?module=Formulaire_event">Inscription</a></li>
         <li><a href="#">Connexion</a></li>
       </ul>
     </div><!-- /.navbar-collapse -->
