@@ -1,5 +1,5 @@
 <p>
-Veuillez remplir le formulaire d'inscription :
+<h2> Veuillez remplir le formulaire d'inscription : </h2>
 </p>
 
 {$form}
