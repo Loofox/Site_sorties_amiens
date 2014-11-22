@@ -66,14 +66,63 @@ class Formulaire_event extends Module{
 	
 		//dans cet exemple, on vérifie seulement si le login est vide et s'il n'existe pas dans la base
 
+		if($this->requete->desc == ''){
+			$valide=false;
+			$form->desc->set_error(true);
+			$form->desc->set_error_message("champ vide !");
+		}
+
+		if($this->requete->adr == ''){
+			$valide=false;
+			$form->adr->set_error(true);
+			$form->adr->set_error_message("champ vide !");
+		}
+
+		if($this->requete->ville == ''){
+			$valide=false;
+			$form->ville->set_error(true);
+			$form->ville->set_error_message("champ vide !");
+		}
+
+		if($this->requete->codepostal == ''){
+			$valide=false;
+			$form->codepostal->set_error(true);
+			$form->codepostal->set_error_message("champ vide !");
+		}
+
+		if($this->requete->mail == ''){
+			$valide=false;
+			$form->mail->set_error(true);
+			$form->mail->set_error_message("champ vide !");
+		}
+
+		if($this->requete->site == ''){
+			$valide=false;
+			$form->site->set_error(true);
+			$form->site->set_error_message("champ vide !");
+		}
+	
+		if($this->requete->lienlogo == ''){
+			$valide=false;
+			$form->lienlogo->set_error(true);
+			$form->lienlogo->set_error_message("champ vide !");
+		}
+
 		if($this->requete->login == ''){
 			$valide=false;
 			$form->login->set_error(true);
 			$form->login->set_error_message("champ vide !");
 		}
+
+		if($this->requete->pass1 == ''){
+			$valide=false;
+			$pass1->login->set_error(true);
+			$pass1->login->set_error_message("champ vide !");
+		}
 	
+
 		//Appel à la BD via objet MembreManager
-		elseif( MembreManager::chercherParLogin( $this->requete->login) !== false){
+		elseif( MembreEvenement::chercherParLogin( $this->requete->login) !== false){
 			$valide=false;
 			$form->login->set_error(true);
 			$form->login->set_error_message("login existant !");			
