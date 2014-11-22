@@ -1,1 +1,1 @@
-<h1>Vous cherchez un lieu ou passer la soirée avec vos amis ?</h1>
+<h1>Vous cherchez un lieu où passer la soirée avec vos amis ?</h1>
