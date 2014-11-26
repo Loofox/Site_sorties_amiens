@@ -1,1 +1,1 @@
-{include file='modules/Formulaire/tpl/index.tpl'}
+{include file='modules/Formulaire_event/tpl/index.tpl'}
