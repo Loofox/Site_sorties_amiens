@@ -20,7 +20,7 @@ class Formulaire_event extends Module{
 			$f->add_text("codepostal", "codepostal", "Code Postal")->set_required();
 			$f->add_text("mail","mail","e-M@il")->set_required();	
 			$f->add_text("site", "site", "Site Web")->set_required();
-			$f->add_text("lienlogo", "lienlogo", "Lien du logo")
+			$f->add_text("lienlogo", "lienlogo", "Lien du logo");
 			$f->add_text("login","login","Login")->set_required();
 			$f->add_password("pass1","pass1","Mot de passe")->set_required();		
 			$f->add_password("pass2","pass2","retapez...")->set_required();
