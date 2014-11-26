@@ -16,6 +16,7 @@ class Connexion extends Module{
 		$this->session->user=$m;		
 		$this->tpl->assign('login',$m->login);
 		$this->site->ajouter_message("Vous êtes connecté en tant que ".$m->login);
+		//$this->session->connex = $f;	
 		$this->site->redirect("index");
 	}
 

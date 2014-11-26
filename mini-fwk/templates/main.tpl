@@ -14,7 +14,7 @@
 	<body>
 
 
-<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
@@ -38,16 +38,20 @@
       
       <ul class="nav navbar-nav navbar-right">
         <li>
-        	<form class="navbar-form navbar-left" role="search">
+        	<!--<form class="navbar-form navbar-left" role="connexion">
        			<div class="form-group">
-          			<input type="text" class="form-control" placeholder="Search">
+          			<input type="text" class="form-control" placeholder="Login">
+          			<input type="password" class="form-control" placeholder="Pass">
         		</div>
-        		<button type="submit" class="btn btn-default">Rechercher</button>
+        		<button type="submit" class="btn btn-default">Connexion</button>
       		</form>
         </li>
+    -->
+
         <li><a href="?module=Formulaire_event">Inscription</a></li>
-        <li><a href="#">Connexion</a></li>
+
       </ul>
+      {$Bloc_Login}
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
@@ -62,7 +66,6 @@
 
 		{if $messages}
 			<div class="bs-callout bs-callout-danger">
-				<h4>Zone de messages transmis par <code>Site::ajouter_message():</code></h4>
 				{$messages}
 			</div>
 		{/if}
