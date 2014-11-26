@@ -17,19 +17,19 @@ class Association{
 	public $password;
 
 ///// METHODES DE CLASSE /////
-	public function __construct($id="", $nom="", $description="", $ad1="", $ad2="", $vill="", $CP = "", $mail="", $sweb="", $lien="", $log="", $pass=""){
+	public function __construct($nom=NULL, $description=NULL, $ad1=NULL, $ad2=NULL, $vill=NULL, $CP = NULL, $mail=NULL, $sweb=NULL, $lien=NULL, $log=NULL, $pass=NULL,$id=NULL){
 		$this->idAssocation = $id;			
 		$this->nomAssociation= $nom;
 		$this->description=$description;
-		$this->$adresse1 = $ad1;
-		$this->$adresse2 = $ad2;
-		$this->$ville = $vill;
-		$this->$codePostal = $CP;
-		$this->$adresseMail = $mail;
-		$this->$siteWeb = $sweb;
-		$this->$lienlogo = $lien;
-		$this->$login = $log;
-		$this->$password = $pass;
+		$this->adresse1 = $ad1;
+		$this->adresse2 = $ad2;
+		$this->ville = $vill;
+		$this->codePostal = $CP;
+		$this->adresseMail = $mail;
+		$this->siteWeb = $sweb;
+		$this->lienlogo = $lien;
+		$this->login = $log;
+		$this->password = $pass;
 	}
 
 

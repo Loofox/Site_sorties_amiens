@@ -20,7 +20,7 @@ class Formulaire_event extends Module{
 			$f->add_text("codepostal", "codepostal", "Code Postal")->set_required();
 			$f->add_text("mail","mail","e-M@il")->set_required();	
 			$f->add_text("site", "site", "Site Web")->set_required();
-			$f->add_text("lienlogo", "lienlogo", "Lien du logo")->set_required();
+			$f->add_text("lienlogo", "lienlogo", "Lien du logo")
 			$f->add_text("login","login","Login")->set_required();
 			$f->add_password("pass1","pass1","Mot de passe")->set_required();		
 			$f->add_password("pass2","pass2","retapez...")->set_required();
@@ -33,7 +33,6 @@ class Formulaire_event extends Module{
 		$f->codepostal->set_validation("is_int");	
 		$f->mail->set_validation("mail");
 		$f->site->set_validation("required");
-		$f->lienlogo->set_validation("required");
 		$f->login->set_validation("required");
 		$f->pass1->set_validation("required");
 		$f->pass2->set_validation("equals-field:pass1");	
@@ -101,12 +100,6 @@ class Formulaire_event extends Module{
 			$form->site->set_error(true);
 			$form->site->set_error_message("champ vide !");
 		}
-	
-		if($this->requete->lienlogo == ''){
-			$valide=false;
-			$form->lienlogo->set_error(true);
-			$form->lienlogo->set_error_message("champ vide !");
-		}
 
 		if($this->requete->login == ''){
 			$valide=false;
@@ -121,31 +114,14 @@ class Formulaire_event extends Module{
 		}
 	
 
+			
 		//Appel à la BD via objet MembreManager
-		/* elseif( MembreEvenement::chercherParLogin( $this->requete->login) !== false){
+		elseif( AssociationManager::chercherParLogin( $this->requete->login) !== false){
 			$valide=false;
 			$form->login->set_error(true);
-			$form->login->set_error_message("login existant !");			
-		 } */
+			$form->login->set_error_message("Ce login est déja utilisé !");			
+		 }
 		
-
-
-		//test upload fichier
-		$fichier=$this->requete->file('pj');
-		if( $fichier['size'] > 0 ){
-			echo "Fichier : <pre>";
-			print_r($fichier['name']);
-			print_r($fichier['tmp_name']);
-			print_r($fichier['type']);						
-			echo "</pre>";
-		}
-
-		print_r($_REQUEST);
-
-
-		//autres tests
-		//...
-
 		
 		//si un des tests a échoué
 		if( $valide==false ){	
@@ -161,17 +137,26 @@ class Formulaire_event extends Module{
 		//tous les tests ont été validés
 		else{
 
-			//création d'une instance de Membre
-			$m=new Membre($this->requete->login,$this->requete->nom,$this->requete->pnom,
-						$this->requete->mail,
-						$this->requete->pass1
-						);
+			//création d'une instance d'Association
+			$m=new Association(
+				$this->requete->nom,
+				$this->requete->desc,
+				$this->requete->adr,
+				$this->requete->adr2,
+				$this->requete->ville,
+				$this->requete->codepostal,
+				$this->requete->mail,
+				$this->requete->site,
+				$this->requete->lienlogo,
+				$this->requete->login,
+				$this->requete->pass1
+			);
 
 			//enregistrement (insertion) dans la base
-			MembreManager::creer($m);
+			AssociationManager::creer($m);
 
 			//passe un message pour la page suivante
-			$this->site->ajouter_message('L\'utilisateur est enregistré');			
+			$this->site->ajouter_message('Vous êtes enregistré');			
 
 			//redirige vers le module par défaut
 			$this->site->redirect('index');
