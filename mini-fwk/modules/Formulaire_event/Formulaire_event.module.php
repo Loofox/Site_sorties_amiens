@@ -116,17 +116,17 @@ class Formulaire_event extends Module{
 
 		if($this->requete->pass1 == ''){
 			$valide=false;
-			$pass1->login->set_error(true);
-			$pass1->login->set_error_message("champ vide !");
+			$form->pass1->set_error(true);
+			$form->pass1->set_error_message("champ vide !");
 		}
 	
 
 		//Appel à la BD via objet MembreManager
-		elseif( MembreEvenement::chercherParLogin( $this->requete->login) !== false){
+		/* elseif( MembreEvenement::chercherParLogin( $this->requete->login) !== false){
 			$valide=false;
 			$form->login->set_error(true);
 			$form->login->set_error_message("login existant !");			
-		 }
+		 } */
 		
 
 
