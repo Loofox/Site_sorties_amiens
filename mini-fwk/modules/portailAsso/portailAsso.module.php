@@ -6,14 +6,14 @@ class portailAsso extends Module{
 
 		//création de variables PHP
 		//on récupère de la base de données des éléments
-		$donne = EvenementManager::Liste_asso($this->session->user->idAssociation);
+		$donne = EvenementManager::liste_event($this->session->user->idAssociation);
 		//passe les variables au template		
 		$this->tpl->assign('data',$donne);
 
 	}
 	
 	public function action_modifier(){
-		$this->set_title("Modifier");
+		$this->set_title("Modification");
 	
 		//recupère l'id et la référence 
 		$id = $this->req->id;
@@ -44,23 +44,27 @@ class portailAsso extends Module{
 	public function action_ajouter(){
 		$this->set_title("Ajouter");	
 		
-		$f= new Form("?module=CRUD&action=valide","form_modif");	
+		$f= new Form("?module=portailAsso&action=valide","form_ajout");	
 		$f->add_text("nom","nom","Nom de l'événement")->set_required();
-		$f->add_text("description","description","Description")->set_required();
+		$f->add_textarea("description","description","Description")->set_required();
 		$f->add_text("dateH","dateH","Date et heure")->set_required();
-		
+		$f->add_text("prixPVente","prixPVente","Prix de prévente")->set_required();
+		$f->add_text("prixVente","prixVente","Prix de vente")->set_required();
+		$f->add_radiogroup("Tevent","Tevent", "Type d'événement",array("1"=>"Soirée intégration","2"=>"Zinzin","3"=>"Bonne humeur"))->set_value("Soirée intégration");
+		$f->add_radiogroup("Tlieu","Tlieu", "Lieu",array("1"=>"Bar","2"=>"Discothèque","3"=>"Théâtre"))->set_value("Bar");
+
 		//règles de validation automatiques
 		//$f->dateH->set_validation("date:d-m-Y");
 		$f->nom->set_validation("required");
 		$f->description->set_validation("required");
 		$f->dateH->set_validation("required");
-		$f->dateH->set_value("0000-00-00 00:00:00");
+		$f->dateH->set_value("00-00-000 00:00:00");
 
 
 		$f->add_submit("Valider","bntval")->set_value('Valider');	
 
 		//passe le formulaire dans le template sous le nom "form"
-		$this->tpl->assign("form_modif",$f);	
+		$this->tpl->assign("form_ajout",$f);	
 		
 		//stocke la structure du formulaire dans la session sous le nom "form"
 		//pour une éventuelle réutilisation
@@ -78,18 +82,15 @@ class portailAsso extends Module{
 		//effectue les tests de vérification définis par l'utilisateur
 		//si un des tests échoue : false
 		$valide = $form->check();
-	
-	
-		//dans cet exemple, on vérifie seulement si le login est vide et s'il n'existe pas dans la base
 
 		if($this->requete->nom == ''){
 			$valide=false;
-			$form->login->set_error(true);
-			$form->login->set_error_message("champ vide !");
+			$form->nom->set_error(true);
+			$form->nom->set_error_message("champ vide !");
 		}
 	
-		//Appel à la BD via objet MembreManager
-		elseif( EvenementManager::chercherParNom( $this->requete->nom) !== false){
+		//Appel à la BD via objet EvenementManager
+		elseif( EvenementManager::chercherParNom($this->requete->nom) !== false){		/* S'il y a déjà un événement qui porte ce nom */
 			$valide=false;
 			$form->nom->set_error(true);
 			$form->nom->set_error_message("Il y a déja un événement qui porte ce nom !");			
@@ -99,20 +100,28 @@ class portailAsso extends Module{
 		//si un des tests a échoué
 		if( $valide==false ){	
 		
-			$this->site->ajouter_message("Merci de remplir le champs Nom de l'événment",ALERTE);			
+			$this->site->ajouter_message("Merci de remplir tous les champs",ALERTE);			
 
 		
 			//on pré-remplit avec les valeurs déjà saisies
 			$form->populate();		
 			//passe le formulaire dans le template sous le nom "form"
-			$this->tpl->assign("form",$form);
+			$this->tpl->assign("form_ajout",$form);
 		}
 		//tous les tests ont été validés
 		else{
 
 			//création d'une instance d'événement
-			$m=new Evenement($this->requete->nom,$this->requete->description,$this->requete->dateHeure);
-
+			$m=new Evenement();
+			$m->nom = $this->requete->nom;
+			$m->description = $this->requete->description;
+			$m->dateHeure = $this->requete->dateHeure;
+			$m->ppvente = $this->requete->prixPVente;
+			$m->pvente = $this->requete->prixVente;
+			$m->typeEvent = $this->requete->Tevent;
+			$m->idlieu = $this->requete->Tlieu;
+			$m->idAsso = $this->session->user->idAssociation;
+			
 			//enregistrement (insertion) dans la base
 			EvenementManager::creer($m);
 
@@ -120,7 +129,7 @@ class portailAsso extends Module{
 			$this->site->ajouter_message("L'événement est ajouté !");			
 
 			//redirige vers le module par défaut
-			$this->site->redirect('index');
+			$this->site->redirect('portailAsso');
 		}
 	}
 
@@ -131,10 +140,13 @@ class portailAsso extends Module{
 		//recupère l'id et la référence 
 		$id = $this->req->id;
 		$ref= $this->req->ref;
-		
+		$nom= $this->req->nom;
+		/*$res =EvenementManager::details($id);*/
+
 		//passe ces informations dans le template
 		
 		$this->tpl->assign("id",$id);
+		$this->tpl->assign("nom",$nom);
 		$this->tpl->assign("reference",$ref);		
 		
 		

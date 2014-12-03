@@ -1,27 +1,12 @@
 <?php
-//exemple de table Membre
-/*
-//structure SQL : 
-CREATE TABLE `Membres` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `login` varchar(30) NOT NULL,
-  `nom` varchar(30) NOT NULL,
-  `prenom` varchar(30) NOT NULL,
-  `mail` varchar(40) NOT NULL,
-  `pass` varchar(32) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-*/
 
-
-
-//classe de gestion des entités Membre
+//classe de gestion des entités Événement
 class EvenementManager{
 	
 
 		public static function creer($m){
 			
-			$sql = "INSERT INTO evenement VALUES ('','', '', '', '', '', '', '', '0')";
+			$sql = "INSERT INTO evenement VALUES ('','', '', '', '', '', '', '', '')";
 			$res = DB::get_instance()->prepare($sql);
 			$res -> execute(array($m->nom, $m->description, $m->dateHeure, $m->prixPreVente, $m->prixVente, $m->idTypeEvenement, $m->idLieu, $m->idAssociation));
 			$m->id=DB::get_instance()->lastInsertId();
@@ -39,8 +24,8 @@ class EvenementManager{
 
 			}   
 
-		public static function liste_asso($id){
-			$sql = "SELECT nomEvenement, description, dateHeure FROM evenement WHERE idAssociation = ? ORDER BY idEvenement DESC";
+		public static function liste_event($id){
+			$sql = "SELECT * FROM evenement WHERE idAssociation = ? ORDER BY idEvenement DESC";
 			$stmt =	DB::get_instance()->prepare($sql);
 			$stmt->execute(array($id));
 			$resul = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -71,12 +56,16 @@ class EvenementManager{
 			return $evenement;
 		}
 
-		public static function desactiver(){
-			
+		/* Suppression d'un événement */
+		public static function supprimer(){
+
 		}
-		public static function activer(){
-			
+
+		/* Modification d'un événement */
+		public static function modifier(){
+
 		}
+
 }
 
 ?> 

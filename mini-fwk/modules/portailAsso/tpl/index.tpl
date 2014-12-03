@@ -3,7 +3,6 @@
 
 <p>C'est ici que vous pourrez gérer vos événements</p>
 
-
 {literal}
 <script>
 //demande confirmation sur click d'un bouton supprimer
@@ -34,9 +33,9 @@ $(function() {
 
 
 	<p class="text-right">
-		<a href='?module=portailAsso&action=ajouter' class='btn btn-success glyphicon glyphicon-plus'> Créer un événement</a>
+		<a href='?module=portailAsso&action=ajouter' class='btn btn-success glyphicon glyphicon-plus'> Ajouter</a>
 	</p>
-<h3>Vos événements</h3>
+
 	<table class='table table-striped'>
 		<thead>
 			<th>Nom</th><th>Description</th><th>Date et heure</th>
@@ -44,6 +43,7 @@ $(function() {
 		<tbody>
 		{foreach $data as $ligne=>$donnees}
 			<tr class='table-striped'>
+
 				<td>{$donnees.nomEvenement}</td>
 				<td>{$donnees.description}</td>
 				<td>{$donnees.dateHeure}</td>
@@ -53,19 +53,19 @@ $(function() {
 					<a class='glyphicon glyphicon-search' 
 						data-toggle="modal" 
 						data-target="#inclusionModal" 
-						href='?module=CRUD&action=detail&id={$donnees.idEvenement}&displayModuleInDialog=1'>
+						href='?module=portailAsso&action=detail&id={$donnees.idEvenement}&nom={$donnees.nomEvenement}&displayModuleInDialog=1'>
 					</a> 				
 
 					<!--modifier-->
 					<a class='glyphicon glyphicon-pencil' 
 						data-toggle="modal" 
 						data-target="#inclusionModal"
-						href='?module=CRUD&action=modifier&id={$donnees.idEvenement}&displayModuleInDialog=1'>	<!-- POUR afficher une boite de dialog, on ajoute simplement &displayModuleInDialog=1 dans l'url -->
+						href='?module=portailAsso&action=modifier&id={$donnees.idEvenement}&displayModuleInDialog=1'>	<!-- POUR afficher une boite de dialogue, on ajoute simplement &displayModuleInDialog=1 dans l'url -->
 					</a>
 
 					<!--supprimer-->
 					<a class='glyphicon glyphicon-remove' title='{$donnees.nomEvenement}' 
-						href='?module=CRUD&action=supprimer&id={$donnees.idEvenement}'></a>				
+						href='?module=portailAsso&action=supprimer&id={$donnees.idEvenement}'></a>				
 				</td>
 			</tr>
 		{foreachelse}	
@@ -80,6 +80,7 @@ $(function() {
 	
 	
 <!-- boite de dialogue confirmation -->
+<!-- exemple du site getbootstrap -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
