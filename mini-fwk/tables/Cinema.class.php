@@ -1,6 +1,6 @@
 <?php
 
- class Bar{
+ class Cinema{
 
  		/*public $idLieu;*/
 		public $nomLieu;
@@ -13,7 +13,7 @@
 		public $latitude;
 		
 		
-		public function __construct(/*$idLieu=NULL, */$nomLieu=NULL,/* $adresse1=NULL, $adresse2=NULL, $ville =NULL, $codePostal=NULL, */$idTypeLieu=1, $longitude=NULL, $latitude=NULL){
+		public function __construct(/*$idLieu=NULL, */$nomLieu=NULL,/* $adresse1=NULL, $adresse2=NULL, $ville =NULL, $codePostal=NULL, */$idTypeLieu=2, $longitude=NULL, $latitude=NULL){
 			
 			/*$this->idLieu = $idLieu;*/		
 			$this->nomLieu=$nomLieu;
