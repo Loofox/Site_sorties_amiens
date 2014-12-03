@@ -1,7 +1,6 @@
-﻿var map;
-  var myOptions;
- 
-  function initialize(locations) {
+var map, mapOptions;
+	
+	  function initialize() {
     var myLatlng = new google.maps.LatLng(49.8940670, 2.2957530); //Centrage sur Amiens
     myOptions =	{
       zoom: 13,
@@ -27,42 +26,17 @@
 	var infowindow = new google.maps.InfoWindow();
     var marker, i;
 	
-	for (i = 0; i < locations.length; i++) {  
       marker = new google.maps.Marker({
-        position: new google.maps.LatLng(locations[i][7], locations[i][8]),
+        position: new google.maps.LatLng(49.8942788, 2.298752400000012),
         map: map
       });
  
       google.maps.event.addListener(marker, 'click', (function(marker, i) {
         return function() {
-          infowindow.setContent(locations[i][1]);
+          infowindow.setContent('Australian Bar');
           infowindow.open(map, marker);
         }
       })(marker, i));
-    }
+    
   }
- 
-  function detectBrowser() {
-    var useragent = navigator.userAgent;
-    var mapdiv = document.getElementById("map_canvas");
- 
-    if (useragent.indexOf('iPhone') != -1 || useragent.indexOf('Android') != -1) {				
-      mapdiv.style.width = '100%';
-      mapdiv.style.height = '100%';
-      myOptions = {
-        navigationControlOptions: {
-          style: google.maps.NavigationControlStyle.ANDROID
-        },
-        mapTypeControlOptions: {
-          style: google.maps.MapTypeControlStyle.DROPDOWN_MENU
-        },
-        disableDoubleClickZoom: true,
-        scaleControl: false
-      };
-      map.setOptions(myOptions);
-    } else {
-      mapdiv.style.width = '100%';
-      mapdiv.style.height = '100%';
-    }
-  }
- 
+      google.maps.event.addDomListener(window, 'load', initialize);
