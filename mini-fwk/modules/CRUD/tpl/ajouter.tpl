@@ -1,5 +1,5 @@
 
 <div class='jumbotron'>
-	<p>Coder le forumulaire d'ajout</p>
-	
+	<p>Modification de l'événement</p>
+	{$form_modif}
 </div>

@@ -35,10 +35,11 @@
         <li><a href="#">Cinémas</a></li>
         <li><a href="#">Concerts</a></li>   
       </ul>
-      
-      <ul class="nav navbar-nav navbar-right">
+      <!--
+     <ul class="nav navbar-nav navbar-right">
+        
         <li>
-        	<!--<form class="navbar-form navbar-left" role="connexion">
+        	<form class="navbar-form navbar-left" role="connexion">
        			<div class="form-group">
           			<input type="text" class="form-control" placeholder="Login">
           			<input type="password" class="form-control" placeholder="Pass">
@@ -46,11 +47,12 @@
         		<button type="submit" class="btn btn-default">Connexion</button>
       		</form>
         </li>
-    -->
+    
 
-        <li><a href="?module=Formulaire_event">Inscription</a></li>
+        
 
       </ul>
+      -->
       {$Bloc_Login}
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
@@ -74,14 +76,7 @@
 		<div id='module'>
 			{$bloc_contenu}
 		</div>			
-				{if $affichages}
-			<div class='alert alert-info'>
-				<h4>Affichages divers</h4>
-				<p>
-				{$affichages}
-				</p>
-			</div>
-			{/if}
+
 			{if $erreurs}
 			<div class='alert alert-warning'>
 				<h4>Erreurs diverses</h4>			

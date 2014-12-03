@@ -26,39 +26,41 @@ $(function() {
 </script>
 {/literal}
 
-<h2>liste des produits et actions</h2>
+
 	<p class="text-right">
 		<a href='?module=CRUD&action=ajouter' class='btn btn-success glyphicon glyphicon-plus'> Ajouter</a>
 	</p>
-<h3>Liste</h3>
+
 	<table class='table table-striped'>
 		<thead>
-			<th>id</th><th>Reference</th><th>Prix</th><th>Actions</th>
+			<th>Nom</th><th>Description</th><th>Date et heure</th>
 		</thead>
 		<tbody>
 		{foreach $data as $ligne=>$donnees}
 			<tr class='table-striped'>
-				<td>{$donnees.id}</td>
-				<td>{$donnees.Reference}</td>
-				<td>{$donnees.Prix}</td>
+
+				<td>{$donnees.nomEvenement}</td>
+				<td>{$donnees.description}</td>
+				<td>{$donnees.dateHeure}</td>
+
 				<td>
 					<!--voir le détail-->
 					<a class='glyphicon glyphicon-search' 
 						data-toggle="modal" 
 						data-target="#inclusionModal" 
-						href='?module=CRUD&action=detail&id={$donnees.id}&ref={$donnees.Reference}&displayModuleInDialog=1'>
+						href='?module=CRUD&action=detail&id={$donnees.idEvenement}&displayModuleInDialog=1'>
 					</a> 				
 
 					<!--modifier-->
 					<a class='glyphicon glyphicon-pencil' 
 						data-toggle="modal" 
 						data-target="#inclusionModal"
-						href='?module=CRUD&action=modifier&id={$donnees.id}&ref={$donnees.Reference}&displayModuleInDialog=1'>
+						href='?module=CRUD&action=modifier&id={$donnees.idEvenement}&displayModuleInDialog=1'>	<!-- POUR afficher une boite de dialog, on ajoute simplement &displayModuleInDialog=1 dans l'url -->
 					</a>
 
 					<!--supprimer-->
-					<a class='glyphicon glyphicon-remove' title='{$donnees.Reference}' 
-						href='?module=CRUD&action=supprimer&id={$donnees.id}&ref={$donnees.Reference}'></a>				
+					<a class='glyphicon glyphicon-remove' title='{$donnees.nomEvenement}' 
+						href='?module=CRUD&action=supprimer&id={$donnees.idEvenement}'></a>				
 				</td>
 			</tr>
 		{foreachelse}	
