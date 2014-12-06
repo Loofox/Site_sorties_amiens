@@ -16,23 +16,14 @@ CREATE TABLE `Membre` (
 
 
 //exemple de classe en relation avec la table
-class Membre{
+class TypeEvenement{
 		
-		public $id;
-		public $mail;
-		public $nom;
-		public $prenom;
-		public $login;
-		public $pass;
+		public $idTypeEvenement;
+		public $nomTypeEvenement
 		
-		public function __construct($login=NULL, $nom=NULL, $prenom=NULL, $mail=NULL, $pass=NULL, $id=NULL){
-			$this->id = $id;			
-			$this->login=$login;
-			$this->nom= $nom;
-			$this->prenom=$prenom;
-			$this->mail=$mail;
-			$this->pass=$pass;
-			
+		public function __construct($nomTypeEvenement=NULL, $idTypeEvenement=NULL){
+			$this->idTypeEvenement = $idTypeEvenement;			
+
 		}
 		
 		

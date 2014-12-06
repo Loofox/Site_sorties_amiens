@@ -16,7 +16,7 @@ CREATE TABLE `Membres` (
 
 
 //classe de gestion des entités Membre
-class TypeEvenementManager{
+class TypeLieuManager{
 	
 /*
 		public static function creer($m){
@@ -31,7 +31,7 @@ class TypeEvenementManager{
 
 */
 		public static function chercherParID($id){
-			$sql="SELECT * from typeevenement WHERE idTypeEvenement=?";
+			$sql="SELECT * from typelieu WHERE idTypeLieu=?";
 			$res=DB::get_instance()->prepare($sql);
 			$res->execute(array($id));
 			//gérer les erreurs éventuelles
@@ -39,9 +39,9 @@ class TypeEvenementManager{
 				return false;
 			}
 			$m= $res->fetch();			
-			$membre=new TypeEvenement();
-			$membre->idTypeEvenement=$m[0];
-			$membre->nomTypeEvenement=$m[1];
+			$membre=new TypeLieu();
+			$membre->idTypeLieu=$m[0];
+			$membre->nomTypeLieu=$m[1];
 											
 			return $membre;
 		}

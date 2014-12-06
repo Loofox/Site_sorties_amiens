@@ -152,24 +152,27 @@ class portailAsso extends Module{
 		$this->tpl->assign("prixPreVente",$res->ppvente);
 		$this->tpl->assign("prixVente",$res->pvente);
 
-		//---------------------------------------------------------------	
-/*
-		$id_tuto = $this->req->id_tuto;
-		$titre_conseil = $this->req->titre_conseil;
-		$contenu = $this->req->contenu;
-		$date_parution = $this->req->date_parution;
-		$type_conseil = $this->req->type_conseil;
-		
-		$conseil = new CRUDConseil();
-		$conseil = CRUDConseilManager::Afficher_detail_conseil($id_tuto);
+		/* Récuperation du nom du type de l'évenement à partir de son id */
+		$typeEvent = new TypeEvenement();
+		$typeEvent = TypeEvenementManager::chercherParId($res->typeEvent);
 
-		$this->tpl->assign("id_tuto",$id_tuto);	
-		$this->tpl->assign("titre_conseil",$conseil->titre_conseil); 
-		$this->tpl->assign("contenu",$conseil->contenu);
-		$this->tpl->assign("date_parution",$date_parution);
-		$this->tpl->assign("type_conseil",$type_conseil);
+		$this->tpl->assign("typeEvent",$typeEvent->nomTypeEvenement);
 		
-*/		
+		/* Récuperation du nom du lieu de l'évenement à partir de son id */
+		$Lieu = new Lieu();
+		$Lieu = LieuManager::chercherParId($res->idlieu);
+
+		$this->tpl->assign("Lieu",$Lieu->nomLieu);
+		$this->tpl->assign("adresse1",$Lieu->adresse1);
+		$this->tpl->assign("adresse2",$Lieu->adresse2);
+		$this->tpl->assign("ville",$Lieu->ville);
+		$this->tpl->assign("codePostal",$Lieu->codePostal);
+
+		/* Récupération du nom du type de lieu de l'événement à partir de l'id du lieu */
+		$typeLieu = new TypeLieu();
+		$typeLieu = TypeLieuManager::chercherParId($Lieu->idTypeLieu);
+
+		$this->tpl->assign("typeLieu",$typeLieu->nomTypeLieu);
 	}
 	
 }	
