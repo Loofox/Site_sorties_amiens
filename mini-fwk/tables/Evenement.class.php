@@ -24,17 +24,5 @@
 			$this->idAsso = $idAsso;
 		}
 
-		/*public function __construct($id=NULL, $nom, $description, $dateHeure, $ppvente, $pvente, $typeEvent, $idlieu, $idAsso){
-			$this->id = $id;			
-			$this->description=$description;
-			$this->nom= $nom;
-			$this->dateHeure = $dateHeure;
-			$this->$ppvente = $ppvente;
-			$this->$pvente = $pvente;
-			$this->$typeEvent = $typeEvent;
-			$this->$idlieu = $idlieu;
-			$this->$idAsso = $idAsso;
-		}
-		*/
  }		
  ?>

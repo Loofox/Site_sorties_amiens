@@ -48,11 +48,33 @@ class EvenementManager{
 			$evenement->nom= $e[1];
 			$evenement->description=$e[2];
 			$evenement->dateHeure=$e[3];
-			$evenement->prixPreVente=$e[4];
-			$evenement->prixVente=$e[5];	
-			$evenement->idTypeEvenement=$e[6];	
-			$evenement->idLieu=$e[7];	
-			$evenement->idAssociatione=$e[8];													
+			$evenement->ppvente=$e[4];
+			$evenement->pvente=$e[5];	
+			$evenement->typeEvent=$e[6];	
+			$evenement->idlieu=$e[7];	
+			$evenement->idAsso=$e[8];													
+			return $evenement;
+		}
+
+		public static function chercherParId($id){
+			$sql="SELECT * from evenement WHERE idEvenement=?";
+			$res=DB::get_instance()->prepare($sql);
+			$res->execute(array($id));
+			//gérer les erreurs éventuelles
+			if($res->rowCount()==0){
+				return false;
+			}
+			$e= $res->fetch();			
+			$evenement=new Evenement();
+			$evenement->id=$e[0];
+			$evenement->nom= $e[1];
+			$evenement->description=$e[2];
+			$evenement->dateHeure=$e[3];
+			$evenement->ppvente=$e[4];
+			$evenement->pvente=$e[5];	
+			$evenement->typeEvent=$e[6];	
+			$evenement->idlieu=$e[7];	
+			$evenement->idAsso=$e[8];													
 			return $evenement;
 		}
 

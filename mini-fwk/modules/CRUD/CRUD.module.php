@@ -51,11 +51,11 @@ class CRUD extends Module{
 		$f->add_text("dateH","dateH","Date et heure")->set_required();
 		
 		//règles de validation automatiques
-		//$f->dateH->set_validation("date:d-m-Y");
+		$f->dateH->set_validation("date:d-m-Y");
 		$f->nom->set_validation("required");
 		$f->description->set_validation("required");
 		$f->dateH->set_validation("required");
-		$f->dateH->set_value("0000-00-00 00:00:00");
+		$f->dateH->set_value("00-00-0000 00:00:00");
 
 
 		$f->add_submit("Valider","bntval")->set_value('Valider');	

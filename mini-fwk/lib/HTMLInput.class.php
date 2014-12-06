@@ -7,8 +7,10 @@
 
 //champs HTML 4 Standard
 define ("TEXT","text");
+define ("TEXTNAV","textnav");
 define ("TEXTAREA","textarea");
 define ("PASSWORD","password");
+define ("PASSWORDNAV","passwordnav");
 define ("CHECK","checkbox");
 define ("RADIO","radio");
 define ("SELECT","select");					
@@ -107,6 +109,11 @@ class HTMLInput{
 					$s=$tpl->fetch("file:templates/champs/text.tpl");
 			break;
 
+			case TEXTNAV : 
+				//$s="<input $common $class_control type='text' value='{$this->value}'>" ;		
+					$s=$tpl->fetch("file:templates/champs/textnav.tpl");
+			break;
+
 			case HIDDEN : 
 					$s=$tpl->fetch("file:templates/champs/hidden.tpl");
 			break;
@@ -117,6 +124,10 @@ class HTMLInput{
 
 			case PASSWORD : 
 					$s=$tpl->fetch("file:templates/champs/password.tpl");
+			break;
+
+			case PASSWORDNAV : 
+					$s=$tpl->fetch("file:templates/champs/passwordnav.tpl");
 			break;
 
 			case FILE : 

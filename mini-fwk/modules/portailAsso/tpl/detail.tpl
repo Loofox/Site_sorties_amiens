@@ -1,9 +1,9 @@
 
 <div class='jumbotron'>
-				Nom : {$nom} <br />
-				Description : {$description}<br />
-				Date et heure : {$date}<br />
-				<!--Prix de prévente : {$detail.prixPreVente}<br />
-				Prix de vente : {$detail.prixVente}
--->
+				<p>Nom : {$nom}</p>
+				<p>Description : {$description}</p>
+				<p>Date et heure : {$date}</p>
+				<p>Prix de prévente : {$prixPreVente}</p>
+				<p>Prix de vente : {$prixVente}</p>
+
 </div>

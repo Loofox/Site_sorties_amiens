@@ -30,37 +30,20 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Sorties du jour</a></li>
+        <li class="active"><a href="?module=CarteBar">Sorties du jour</a></li>
         <li><a href="?module=CarteBar">Bars</a></li>
         <li><a href="#">Cinémas</a></li>
         <li><a href="#">Concerts</a></li> 
         <li>
         	<form class="navbar-form navbar-left" role="search">
         		<div class="form-group">
-        			<input type="text" class="form-control" placeholder="Search">
+        			<input type="textnav" class="form-control" placeholder="Search">
         		</div>
         		<button type="submit" class="btn btn-default">Rechercher</button>
         	</form>
         </li>  
       </ul>
-      <!--
-     <ul class="nav navbar-nav navbar-right">
-        
-        <li>
-        	<form class="navbar-form navbar-left" role="connexion">
-       			<div class="form-group">
-          			<input type="text" class="form-control" placeholder="Login">
-          			<input type="password" class="form-control" placeholder="Pass">
-        		</div>
-        		<button type="submit" class="btn btn-default">Connexion</button>
-      		</form>
-        </li>
-    
 
-        
-
-      </ul>
-      -->
       {$Bloc_Login}
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->

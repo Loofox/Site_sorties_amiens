@@ -135,21 +135,41 @@ class portailAsso extends Module{
 
 
 	public function action_detail(){
-		$this->set_title("Détail");	
+		$this->set_title("Détails");	
 		
 		//recupère l'id et la référence 
 		$id = $this->req->id;
-		$ref= $this->req->ref;
-		$nom= $this->req->nom;
-		/*$res =EvenementManager::details($id);*/
 
+		$res =new Evenement();
+		$res =EvenementManager::chercherParId($id);
+		
 		//passe ces informations dans le template
 		
 		$this->tpl->assign("id",$id);
-		$this->tpl->assign("nom",$nom);
-		$this->tpl->assign("reference",$ref);		
+		$this->tpl->assign("nom",$res->nom);
+		$this->tpl->assign("description",$res->description);
+		$this->tpl->assign("date",$res->dateHeure);
+		$this->tpl->assign("prixPreVente",$res->ppvente);
+		$this->tpl->assign("prixVente",$res->pvente);
+
+		//---------------------------------------------------------------	
+/*
+		$id_tuto = $this->req->id_tuto;
+		$titre_conseil = $this->req->titre_conseil;
+		$contenu = $this->req->contenu;
+		$date_parution = $this->req->date_parution;
+		$type_conseil = $this->req->type_conseil;
 		
+		$conseil = new CRUDConseil();
+		$conseil = CRUDConseilManager::Afficher_detail_conseil($id_tuto);
+
+		$this->tpl->assign("id_tuto",$id_tuto);	
+		$this->tpl->assign("titre_conseil",$conseil->titre_conseil); 
+		$this->tpl->assign("contenu",$conseil->contenu);
+		$this->tpl->assign("date_parution",$date_parution);
+		$this->tpl->assign("type_conseil",$type_conseil);
 		
+*/		
 	}
 	
 }	

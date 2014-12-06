@@ -53,7 +53,7 @@ $(function() {
 					<a class='glyphicon glyphicon-search' 
 						data-toggle="modal" 
 						data-target="#inclusionModal" 
-						href='?module=portailAsso&action=detail&id={$donnees.idEvenement}&nom={$donnees.nomEvenement}&displayModuleInDialog=1'>
+						href='?module=portailAsso&action=detail&id={$donnees.idEvenement}&displayModuleInDialog=1'>
 					</a> 				
 
 					<!--modifier-->
