@@ -6,9 +6,9 @@ class EvenementManager{
 
 		public static function creer($m){
 			
-			$sql = "INSERT INTO evenement VALUES ('','', '', '', '', '', '', '', '')";
+			$sql = "INSERT INTO evenement VALUES ('', ?, ?, ?, ?, ?, ?, ?, ?)";
 			$res = DB::get_instance()->prepare($sql);
-			$res -> execute(array($m->nom, $m->description, $m->dateHeure, $m->prixPreVente, $m->prixVente, $m->idTypeEvenement, $m->idLieu, $m->idAssociation));
+			$res -> execute(array($m->nom, $m->description, $m->dateHeure, $m->ppvente, $m->pvente, $m->typeEvent, $m->idlieu, $m->idAsso));
 			$m->id=DB::get_instance()->lastInsertId();
 			return $m;
 			
@@ -79,13 +79,17 @@ class EvenementManager{
 		}
 
 		/* Suppression d'un événement */
-		public static function supprimer(){
-
+		public static function supprimer($id){
+			$sql = "DELETE FROM `evenement` WHERE `idEvenement`=?";
+			$stmt =	DB::get_instance()->prepare($sql);
+			$stmt->execute(array($id));
 		}
 
 		/* Modification d'un événement */
 		public static function modifier(){
-
+			$sql = "UPDATE evenement SET `pseudo`="Jacques" WHERE `id`=?";
+			$stmt =	DB::get_instance()->prepare($sql);
+			$stmt->execute(array($id));
 		}
 
 }

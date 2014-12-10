@@ -73,10 +73,25 @@ class LieuManager{
 			return $membre;
 		}
 		
-		
+*/		
 		//autres exemples de fonctions possibles
 		public static function liste(){
-			
+			$sql = "SELECT * FROM lieu";
+			$res = DB::get_instance()->prepare($sql);
+			$res -> execute();
+
+			//gérer les erreurs éventuelles
+			if($res->rowCount()==0){
+				return false;
+			}
+
+
+			$m = array();
+			while( $ligne =  $res->fetch(PDO::FETCH_ASSOC)){
+					$m[ $ligne["idLieu"] ] = $ligne["nomLieu"];
+				}	
+			return $m;
+				
 		}   		
 
 		public static function desactiver(){
@@ -85,7 +100,7 @@ class LieuManager{
 		public static function activer(){
 			
 		}
-*/
+
 }
 
 ?>

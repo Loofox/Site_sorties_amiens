@@ -31,12 +31,15 @@ class portailAsso extends Module{
 
 		//recupère l'id et la référence 
 		$id = $this->req->id;
-		$ref= $this->req->ref;
+		EvenementManager::supprimer($id);
 		
-		//passe ces informations dans le template
+		//passe un message pour la page suivante
+		$this->site->ajouter_message("L'événement à bien été supprimé !");			
+
+		//redirige vers le module par défaut
+		$this->site->redirect('portailAsso');
+
 		
-		$this->tpl->assign("id",$id);
-		$this->tpl->assign("reference",$ref);		
 		
 	}
 	
@@ -44,21 +47,24 @@ class portailAsso extends Module{
 	public function action_ajouter(){
 		$this->set_title("Ajouter");	
 		
+		$TypeEvenement= TypeEvenementManager::liste();
+		$Lieu= LieuManager::liste();
+
 		$f= new Form("?module=portailAsso&action=valide","form_ajout");	
 		$f->add_text("nom","nom","Nom de l'événement")->set_required();
 		$f->add_textarea("description","description","Description")->set_required();
 		$f->add_text("dateH","dateH","Date et heure")->set_required();
 		$f->add_text("prixPVente","prixPVente","Prix de prévente")->set_required();
 		$f->add_text("prixVente","prixVente","Prix de vente")->set_required();
-		$f->add_radiogroup("Tevent","Tevent", "Type d'événement",array("1"=>"Soirée intégration","2"=>"Zinzin","3"=>"Bonne humeur"))->set_value("Soirée intégration");
-		$f->add_radiogroup("Tlieu","Tlieu", "Lieu",array("1"=>"Bar","2"=>"Discothèque","3"=>"Théâtre"))->set_value("Bar");
+		$f->add_select("choixEvenement","choixEvenement","Type d'événement",$TypeEvenement)->set_required();
+		$f->add_select("choixLieu","choixLieu","Lieu",$Lieu)->set_required();
 
 		//règles de validation automatiques
 		//$f->dateH->set_validation("date:d-m-Y");
 		$f->nom->set_validation("required");
 		$f->description->set_validation("required");
 		$f->dateH->set_validation("required");
-		$f->dateH->set_value("00-00-000 00:00:00");
+		$f->dateH->set_value("0000-00-00 00:00:00");
 
 
 		$f->add_submit("Valider","bntval")->set_value('Valider');	
@@ -113,15 +119,15 @@ class portailAsso extends Module{
 
 			//création d'une instance d'événement
 			$m=new Evenement();
-			$m->nom = $this->requete->nom;
-			$m->description = $this->requete->description;
-			$m->dateHeure = $this->requete->dateHeure;
-			$m->ppvente = $this->requete->prixPVente;
-			$m->pvente = $this->requete->prixVente;
-			$m->typeEvent = $this->requete->Tevent;
-			$m->idlieu = $this->requete->Tlieu;
+			$m->nom = $this->req->nom;
+			$m->description = $this->req->description;
+			$m->dateHeure = $this->req->dateH;
+			$m->ppvente = $this->req->prixPVente;
+			$m->pvente = $this->req->prixVente;
+			$m->typeEvent = $this->req->choixEvenement;
+			$m->idlieu = $this->req->choixLieu;
 			$m->idAsso = $this->session->user->idAssociation;
-			
+
 			//enregistrement (insertion) dans la base
 			EvenementManager::creer($m);
 
@@ -140,8 +146,8 @@ class portailAsso extends Module{
 		//recupère l'id et la référence 
 		$id = $this->req->id;
 
-		$res =new Evenement();
-		$res =EvenementManager::chercherParId($id);
+		$res = new Evenement();
+		$res = EvenementManager::chercherParId($id);
 		
 		//passe ces informations dans le template
 		

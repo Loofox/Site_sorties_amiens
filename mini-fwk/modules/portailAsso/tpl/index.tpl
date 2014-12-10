@@ -65,7 +65,7 @@ $(function() {
 
 					<!--supprimer-->
 					<a class='glyphicon glyphicon-remove' title='{$donnees.nomEvenement}' 
-						href='?module=portailAsso&action=supprimer&id={$donnees.idEvenement}'></a>				
+						href='?module=portailAsso&action=supprimer&id={$donnees.idEvenement}&displayModuleInDialog=1'></a>				
 				</td>
 			</tr>
 		{foreachelse}	
