@@ -37,7 +37,7 @@
         <li>
         	<form class="navbar-form navbar-left" role="search">
         		<div class="form-group">
-        			<input type="textnav" class="form-control" placeholder="Search">
+        			<input type="text" class="form-control" placeholder="Search">
         		</div>
         		<button type="submit" class="btn btn-default">Rechercher</button>
         	</form>
