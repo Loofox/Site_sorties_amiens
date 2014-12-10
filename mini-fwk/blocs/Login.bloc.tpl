@@ -1,6 +1,7 @@
 {if isset($login) }	
 <ul class="nav navbar-nav navbar-right">
-	<li><a href='?module=Connexion&action=deconnect'>{$login} | Se déconnecter</a></li>
+	<li><a href='?module=portailAsso'>{$login}</a></li>
+	<li><a href='?module=Connexion&action=deconnect'>| Se déconnecter</a></li>
 </ul>
 
 

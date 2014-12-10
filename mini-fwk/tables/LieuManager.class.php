@@ -16,7 +16,7 @@ CREATE TABLE `Membres` (
 
 
 //classe de gestion des entités Membre
-class TypeEvenementManager{
+class LieuManager{
 	
 /*
 		public static function creer($m){
@@ -31,7 +31,7 @@ class TypeEvenementManager{
 
 */
 		public static function chercherParID($id){
-			$sql="SELECT * from typeevenement WHERE idTypeEvenement=?";
+			$sql="SELECT * from lieu WHERE idLieu=?";
 			$res=DB::get_instance()->prepare($sql);
 			$res->execute(array($id));
 			//gérer les erreurs éventuelles
@@ -39,10 +39,16 @@ class TypeEvenementManager{
 				return false;
 			}
 			$m= $res->fetch();			
-			$membre=new TypeEvenement();
-			$membre->idTypeEvenement=$m[0];
-			$membre->nomTypeEvenement=$m[1];
-											
+			$membre=new Lieu();
+			$membre->idLieu=$m[0];			
+			$membre->nomLieu = $m[1];
+			$membre->adresse1 = $m[2];
+			$membre->adresse2 = $m[3];
+			$membre->ville = $m[4];
+			$membre->codePostal = $m[5];
+			$membre->idTypeLieu = $m[6];
+			$membre->longitude = $m[7];
+			$membre->latitude = $m[8];							
 			return $membre;
 		}
 
@@ -67,10 +73,25 @@ class TypeEvenementManager{
 			return $membre;
 		}
 		
-		
+*/		
 		//autres exemples de fonctions possibles
 		public static function liste(){
-			
+			$sql = "SELECT * FROM lieu";
+			$res = DB::get_instance()->prepare($sql);
+			$res -> execute();
+
+			//gérer les erreurs éventuelles
+			if($res->rowCount()==0){
+				return false;
+			}
+
+
+			$m = array();
+			while( $ligne =  $res->fetch(PDO::FETCH_ASSOC)){
+					$m[ $ligne["idLieu"] ] = $ligne["nomLieu"];
+				}	
+			return $m;
+				
 		}   		
 
 		public static function desactiver(){
@@ -79,7 +100,7 @@ class TypeEvenementManager{
 		public static function activer(){
 			
 		}
-*/
+
 }
 
 ?>

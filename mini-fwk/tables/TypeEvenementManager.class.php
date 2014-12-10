@@ -66,11 +66,24 @@ class TypeEvenementManager{
 			$membre->pass=$m[5];											
 			return $membre;
 		}
-		
-		
+*/
 		//autres exemples de fonctions possibles
-		public static function liste(){
-			
+		public static function liste()
+		{
+			$sql = "SELECT * FROM typeevenement";
+			$res = DB::get_instance()->prepare($sql);
+			$res -> execute();
+
+			//gérer les erreurs éventuelles
+			if($res->rowCount()==0){
+				return false;
+			}
+
+			$m = array();
+			while( $ligne =  $res->fetch(PDO::FETCH_ASSOC)){
+					$m[ $ligne["idTypeEvenement"] ] = $ligne["nomTypeEvenement"];
+				}	
+			return $m;
 		}   		
 
 		public static function desactiver(){
@@ -79,7 +92,7 @@ class TypeEvenementManager{
 		public static function activer(){
 			
 		}
-*/
+
 }
 
 ?>
