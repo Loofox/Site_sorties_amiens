@@ -87,9 +87,9 @@ class EvenementManager{
 
 		/* Modification d'un événement */
 		public static function modifier(){
-			$sql = "UPDATE evenement SET `pseudo`="Jacques" WHERE `id`=?";
-			$stmt =	DB::get_instance()->prepare($sql);
-			$stmt->execute(array($id));
+			//$sql = "UPDATE evenement SET `pseudo`="Jacques" WHERE `id`=?";
+			//$stmt =	DB::get_instance()->prepare($sql);
+			//$stmt->execute(array($id));
 		}
 
 }
