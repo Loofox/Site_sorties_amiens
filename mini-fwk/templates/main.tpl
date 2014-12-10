@@ -33,7 +33,7 @@
         <li class="active"><a href="?module=CarteBar">Sorties du jour</a></li>
         <li><a href="?module=CarteBar">Bars</a></li>
         <li><a href="?module=CarteCinema">Cinémas</a></li>
-        <li><a href="#">Concerts</a></li> 
+        <li><a href="?module=CarteConcert">Concerts</a></li> 
         <li>
         	<form class="navbar-form navbar-left" role="search">
         		<div class="form-group">
