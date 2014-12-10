@@ -32,7 +32,7 @@
       <ul class="nav navbar-nav">
         <li class="active"><a href="#">Sorties du jour</a></li>
         <li><a href="?module=CarteBar">Bars</a></li>
-        <li><a href="#">Cinémas</a></li>
+        <li><a href="?module=CarteCinema">Cinémas</a></li>
         <li><a href="#">Concerts</a></li> 
         <li>
         	<form class="navbar-form navbar-left" role="search">
