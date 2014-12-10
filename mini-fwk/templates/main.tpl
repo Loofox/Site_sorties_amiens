@@ -24,7 +24,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">On va ou ce soir ?</a>
+      <a class="navbar-brand" href="?module">On va ou ce soir ?</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -39,7 +39,7 @@
         		<div class="form-group">
         			<input type="text" class="form-control" placeholder="Search">
         		</div>
-        		<button type="submit" class="btn btn-default">Rechercher</button>
+        		<button type="submit" class="btn btn-default" href="?module=Rechercher">Rechercher</button>
         	</form>
         </li>  
       </ul>
