@@ -126,7 +126,7 @@ class Formulaire_event extends Module{
 		//si un des tests a échoué
 		if( $valide==false ){	
 		
-			$this->site->ajouter_message('contrôle form : remplir les champs (uniquement login dans cet exemple)',ALERTE);			
+			$this->site->ajouter_message('contrôle form : remplir les champs',ALERTE);			
 
 		
 			//on pré-remplit avec les valeurs déjà saisies
