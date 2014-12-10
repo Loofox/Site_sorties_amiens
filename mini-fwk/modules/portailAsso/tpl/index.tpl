@@ -60,7 +60,7 @@ $(function() {
 					<a class='glyphicon glyphicon-pencil' 
 						data-toggle="modal" 
 						data-target="#inclusionModal"
-						href='?module=portailAsso&action=modifier&id={$donnees.idEvenement}&displayModuleInDialog=1'>	<!-- POUR afficher une boite de dialogue, on ajoute simplement &displayModuleInDialog=1 dans l'url -->
+						href='?module=portailAsso&action=modifier&id={$donnees.idEvenement}&displayModuleInDialog=2'>	<!-- POUR afficher une boite de dialogue, on ajoute simplement &displayModuleInDialog=1 dans l'url -->
 					</a>
 
 					<!--supprimer-->

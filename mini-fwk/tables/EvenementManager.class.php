@@ -24,6 +24,7 @@ class EvenementManager{
 
 			}   
 
+		//Liste des evenements d'une seule association
 		public static function liste_event($id){
 			$sql = "SELECT * FROM evenement WHERE idAssociation = ? ORDER BY idEvenement DESC";
 			$stmt =	DB::get_instance()->prepare($sql);
@@ -86,10 +87,10 @@ class EvenementManager{
 		}
 
 		/* Modification d'un événement */
-		public static function modifier(){
-			//$sql = "UPDATE evenement SET `pseudo`="Jacques" WHERE `id`=?";
-			//$stmt =	DB::get_instance()->prepare($sql);
-			//$stmt->execute(array($id));
+		public static function modifier($m){
+			$sql = "UPDATE evenement SET nomEvenement = ?, description = ?, dateHeure = ?, prixPreVente = ?, prixVente = ?, idTypeEvenement = ?, idLieu = ?, idAssociation = ? WHERE `idEvenement`=?";
+			$stmt =	DB::get_instance()->prepare($sql);
+			$stmt->execute(array($m->nom, $m->description, $m->dateHeure, $m->ppvente, $m->pvente, $m->typeEvent, $m->idlieu, $m->idAsso, $m->id));
 		}
 
 }

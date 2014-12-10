@@ -1,5 +1,4 @@
-<h2>Modification de {$reference}</h2>
-
 <div class='jumbotron'>
-	{form_modif}
+	<p>Modification d'un événement</p>
+	{$form_modif}
 </div>
